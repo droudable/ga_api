@@ -3,7 +3,7 @@
 
 ##
 ##
-## läuft noch nicht. aber keine fehlermeldung. 
+## läuft noch nicht. aber keine fehlermeldung.
 ##
 ##
 from apiclient.discovery import build
@@ -17,25 +17,25 @@ def get_service(api_name, api_version, scopes, key_file_location):
     return service
 
 def patch_profiles(service):
-    #try:
+    try:
       service.management().profiles().patch(
         accountId='18536901',
         webPropertyId='UA-18536901-1',
         profileId='74816901',
         body={'eCommerceTracking': True,'enhancedECommerceTracking': True}).execute()
       print(service)
-    #except TypeError, error:
+    except error:
     # Handle errors in constructing a query.
-    #  print ('There was an error in constructing your query : %s', % error)
-  #except HttpError, error:
+      print ('There was an error in constructing your query : %s',  error)
+    except error:
      # Handle API errors.
-     # print ('There was an API error : %s : %s', % (error.resp.status, error.resp.reason))
+      print ('There was an API error : %s : %s',  (error.resp.status, error.resp.reason))
 
 
 def main():
     # Define the auth scopes to request.
     scope = 'https://www.googleapis.com/auth/analytics.readonly'
-    key_file_location = 'c:\ga_api\client_secrets2.json'
+    key_file_location = 'client_secrets2.json'
 
     # Authenticate and construct service.
     service = get_service(

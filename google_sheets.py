@@ -4,7 +4,7 @@ from httplib2 import Http
 from oauth2client import file, client, tools
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+SCOPES = 'https://www.googleapis.com/auth/drive'
 
 # The ID and range of a sample spreadsheet.
 SPREADSHEET_ID_READ = '1MOCyQ1q9Xuz6EIkW9453xlcol-W_K0wb87Ua5FfBa9U'
@@ -20,7 +20,7 @@ def main():
     store = file.Storage('token.json')
     creds = store.get()
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('credentials_sheet_test.json', 'https://www.googleapis.com/auth/drive')
+        flow = client.flow_from_clientsecrets('client_secrets.json', 'https://www.googleapis.com/auth/drive')
         creds = tools.run_flow(flow, store)
     service = build('sheets', 'v4', http=creds.authorize(Http()))
 
